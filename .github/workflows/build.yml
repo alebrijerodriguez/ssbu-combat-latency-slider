@@ -8,25 +8,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: jugeeya/cargo-skyline:2.1.0
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: nightly-2023-09-01
-          targets: aarch64-nintendo-switch-freestanding
-
-      - name: Install cargo-skyline
-        run: cargo install cargo-skyline
-
-      - name: Build NRO
-        run: cargo skyline build --release
+      - name: Build release NRO
+        run: |
+          PATH=$PATH:/root/.cargo/bin
+          /root/.cargo/bin/cargo-skyline skyline build --release
+        env:
+          HOME: /root
 
       - name: Upload NRO Artifact
         uses: actions/upload-artifact@v4
         with:
           name: latency-slider-4f-nro
-          path: target/aarch64-nintendo-switch-freestanding/release/*.nro
+          path: target/aarch64-skyline-switch/release/*.nro
