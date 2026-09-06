@@ -18,7 +18,7 @@ jobs:
         run: |
           PATH=$PATH:/root/.cargo/bin
           rm -f Cargo.lock
-          cargo skyline build --release -- -Z minimal-versions
+          cargo-skyline skyline build --release
         env:
           HOME: /root
 
