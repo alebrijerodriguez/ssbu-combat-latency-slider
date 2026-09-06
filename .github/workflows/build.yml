@@ -1,0 +1,32 @@
+name: Build Skyline Plugin
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-nintendo-switch-freestanding
+
+      - name: Install cargo-skyline
+        run: cargo install cargo-skyline
+
+      - name: Build NRO
+        run: cargo skyline build --release
+
+      - name: Upload NRO Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: latency-slider-4f-nro
+          path: target/aarch64-nintendo-switch-freestanding/release/*.nro
+          
