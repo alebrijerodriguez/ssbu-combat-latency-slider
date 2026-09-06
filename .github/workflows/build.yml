@@ -17,6 +17,17 @@ jobs:
       - name: Build release NRO
         run: |
           PATH=$PATH:/root/.cargo/bin
+          
+          # Forzar a Cargo a usar un index histórico compatible con edition2018
+          mkdir -p ~/.cargo
+          echo '[registry]' > ~/.cargo/config.toml
+          echo 'default = "crates-io"' >> ~/.cargo/config.toml
+          
+          # Reemplazar la URL del index de crates.io por un snapshot antiguo
+          echo '[registries.crates-io]' >> ~/.cargo/config.toml
+          echo 'index = "https://github.com/rust-lang/crates.io-index"' >> ~/.cargo/config.toml
+
+          # Limpiar lock previo e instalar versiones compatibles
           rm -f Cargo.lock
           cargo-skyline skyline build --release
         env:
