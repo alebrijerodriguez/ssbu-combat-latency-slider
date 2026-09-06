@@ -25,8 +25,8 @@ static CURRENT_LATENCY: u8 = 0;
 static CURRENT_LATENCY: u8 = 1;
 #[cfg(feature = "2f")]
 static CURRENT_LATENCY: u8 = 2;
-#[cfg(feature = "3f")]
-static CURRENT_LATENCY: u8 = 3;
+#[cfg(feature = "4f")]
+static CURRENT_LATENCY: u8 = 4;
 
 #[cfg(not(feature = "fixed"))]
 static mut CURRENT_LATENCY: u8 = config::DEFAULT_LATENCY;
@@ -69,7 +69,7 @@ unsafe fn handle_user_input() {
     } else if pressed.contains(ninput::Buttons::RIGHT) {
         CURRENT_LATENCY = 2;
     } else if pressed.contains(ninput::Buttons::DOWN) {
-        CURRENT_LATENCY = 3;
+        CURRENT_LATENCY = 4;
     }
 
     if CURRENT_LATENCY == previous {
