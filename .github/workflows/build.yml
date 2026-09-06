@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@nightly
         with:
           targets: aarch64-nintendo-switch-freestanding
 
       - name: Install cargo-skyline
-        run: cargo install cargo-skyline
+        run: cargo install cargo-skyline --force
 
       - name: Build NRO
         run: cargo skyline build --release
@@ -29,4 +29,3 @@ jobs:
         with:
           name: latency-slider-4f-nro
           path: target/aarch64-nintendo-switch-freestanding/release/*.nro
-          
