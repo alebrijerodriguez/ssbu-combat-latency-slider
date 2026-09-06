@@ -14,7 +14,7 @@ crate-type = ["cdylib"]
 [dependencies]
 ninput = { git = "https://github.com/blu-dev/ninput", version = "0.1.0" }
 skyline = { git = "https://github.com/ultimate-research/skyline-rs.git" }
-once_cell = { version = "1.20.2", default-features = true }
+once_cell = { version = "1.17.2", default-features = true }
 
 [features]
 # locked-latency builds: pick one of 0f/1f/2f/3f
