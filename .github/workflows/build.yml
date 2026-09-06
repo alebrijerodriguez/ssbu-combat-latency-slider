@@ -18,7 +18,7 @@ jobs:
         run: |
           PATH=$PATH:/root/.cargo/bin
           rm -f Cargo.lock
-          cargo-skyline skyline build --release
+          cargo skyline build --release -- -Z minimal-versions
         env:
           HOME: /root
 
@@ -27,4 +27,3 @@ jobs:
         with:
           name: latency-slider-4f-nro
           path: target/aarch64-skyline-switch/release/*.nro
-          
