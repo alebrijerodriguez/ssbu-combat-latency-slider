@@ -17,7 +17,8 @@ jobs:
       - name: Build release NRO
         run: |
           PATH=$PATH:/root/.cargo/bin
-          /root/.cargo/bin/cargo-skyline skyline build --release
+          rustup default nightly
+          cargo-skyline skyline build --release
         env:
           HOME: /root
 
