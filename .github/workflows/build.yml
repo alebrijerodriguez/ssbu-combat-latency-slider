@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/skyline-dev/cargo-skyline:latest
+      image: jugeeya/cargo-skyline:2.1.0
 
     steps:
       - uses: actions/checkout@v4
@@ -17,9 +17,11 @@ jobs:
       - name: Build release NRO
         run: |
           PATH=$PATH:/root/.cargo/bin
+          rm -f Cargo.lock
           cargo skyline build --release
         env:
           HOME: /root
+          CARGO_HTTP_CHECK_REVOKE: "false"
 
       - name: Upload NRO Artifact
         uses: actions/upload-artifact@v4
