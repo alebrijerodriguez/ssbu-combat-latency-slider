@@ -17,15 +17,8 @@ jobs:
       - name: Build release NRO
         run: |
           PATH=$PATH:/root/.cargo/bin
-          
-          # Actualizar el índice de crates.io y retrocederlo a un commit de 2021 (Rust 2018 era estándar)
-          cargo fetch || true
-          cd /root/.cargo/registry/index/github.com-1ecc629db9ec823 || cd /root/.cargo/registry/index/*
-          git checkout 84d2a13f7 || true
-          cd -
-          
-          # Compilar el plugin
-          cargo-skyline skyline build --release
+          rm -f Cargo.lock
+          cargo skyline build --release
         env:
           HOME: /root
 
