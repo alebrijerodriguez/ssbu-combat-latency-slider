@@ -2,7 +2,7 @@
 name = "ssbu-combat-latency-slider"
 version = "1.0.0"
 authors = ["alebro"]
-edition = "2021"
+edition = "2018"
 
 [lib]
 crate-type = ["cdylib"]
@@ -11,7 +11,10 @@ crate-type = ["cdylib"]
 skyline = "0.2.0"
 skyline-web = "0.1.0"
 ninput = { git = "https://github.com/blu-dev/ninput", branch = "master" }
-once_cell = "1.17.2"
+once_cell = "~1.14.0"
+itoa = "~0.4.8"
+ryu = "~1.0.5"
+crunchy = "=0.2.2"
 
 [profile.release]
 panic = "abort"
